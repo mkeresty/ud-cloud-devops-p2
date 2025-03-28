@@ -1,3 +1,13 @@
+ignore
+
+
+
+
+
+
+
+# Standard python stuff
+
 # Editors
 .vscode/
 .idea/
