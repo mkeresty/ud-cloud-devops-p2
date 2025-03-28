@@ -1,0 +1,26 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+  steps:
+  - uses: actions/checkout@v2
+  - name: Set up Python 3.13
+    uses: actions/setup-python@v1
+    with:
+      python-version: 3.13.2
+  - name: Install dependencies
+    run: |
+      make install
+  - name: Lint with pylint
+    run: |
+      make lint
+  - name: Test with pytest
+    run: |
+      make test
