@@ -1,7 +1,7 @@
 # Udacity Cloud DevOps using Microsoft Azure
 ## Project 2: Continuous Integration
 
-[![Python application test with GitHub Actions](https://github.com/mkeresty/ud-cloud-devops-p2/actions/workflows/main.yml/badge.svg)](https://github.com/mkeresty/ud-cloud-devops-p2/actions/workflows/main.yml)
+[![Python application test with Github Actions](https://github.com/mkeresty/ud-cloud-devops-p2/actions/workflows/python-app.yml/badge.svg)](https://github.com/mkeresty/ud-cloud-devops-p2/actions/workflows/python-app.yml)
 
 ### Description
 
