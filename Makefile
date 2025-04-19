@@ -1,6 +1,8 @@
 setup:
+	la -la
+	pwd
 	python3 -m venv ~/.antenv
-	./antenv/bin/activate
+	~./antenv/bin/activate
 
 install:
 	pip install --upgrade pip &&\
