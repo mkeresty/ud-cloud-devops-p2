@@ -1,0 +1,33 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  subscriptionId: '7de72e36-dc87-4e3f-aa67-6dacbc9993c6'
+  resourceGroup: 'Azuredevops'
+  vmName: 'myLinuxVM'
+  vmUsername: 'azureuser'
+  containerRegistry: 'YOUR_CONTAINER_REGISTRY'
+  repositoryName: 'flask-app'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildAndPush
+    displayName: 'Build and Push Docker Image'
+    steps:
+    - task: Docker@2
+      displayName: 'Build and Push Docker Image'
+      inputs:
+        command: buildAndPush
+        containerRegistry: $(containerRegistry)
+        repository: $(repositoryName)
+        dockerfile: $(dockerfilePath)
+        tags: |
+          $(tag)
+          latest
