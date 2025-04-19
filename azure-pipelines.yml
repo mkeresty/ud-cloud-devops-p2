@@ -1,7 +1,7 @@
 trigger:
 - main
 
-pool: 'myPool'
+pool: myPool
 
 variables:
   appName: 'udp2'
@@ -20,7 +20,7 @@ stages:
   displayName: Build stage
   jobs:
   - job: BuildJob
-    pool: $(pool)
+    pool: myPool
     steps:    
     - script: |
         export PATH=$HOME/.local/bin:$PATH
@@ -46,7 +46,7 @@ stages:
   condition: succeeded()
   jobs:
   - deployment: DeploymentJob
-    pool: $(pool)
+    pool: myPool
     environment: $(environmentName)
     strategy:
       runOnce:
