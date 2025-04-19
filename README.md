@@ -10,42 +10,120 @@
 
 ## Instructions
 
-<TODO:  
-* Architectural Diagram (Shows how key parts of the system work)>
+# Architectural Diagram
+![Diagram](./screenshots/microservices-strategy.png)
 
-<TODO:  Instructions for running the Python project.  How could a user with no context run this project without asking you for any help.  Include screenshots with explicit steps to create that work. Be sure to at least include the following screenshots:
+# CD Diagram
+![CD Diagram](./screenshots/cd-diagram.png)
 
-* Project running on Azure App Service
 
-* Project cloned into Azure Cloud Shell
+# Azure Web App Deployment Steps
 
-* Passing tests that are displayed after running the `make all` command from the `Makefile`
+## Variable Configuration
+- Modify ```azure-pipelines.yml``` script *variables* section with your variables. (Don't forget to adjust the pool name on lines 24 & 50)
+- Modify ```make_predict_azure_app``` line 28 to be your Azure Web App url
 
-* Output of a test run
+## GitHub Setup
+1. Upload code to GitHub
+2. Go to Github Actions and ensure all tests are passing
+![GitHub Actions](./screenshots/ss_2_passing_gh_actions.png)
 
-* Successful deploy of the project in Azure Pipelines.  [Note the official documentation should be referred to and double checked as you setup CI/CD](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/python-webapp?view=azure-devops).
 
-* Running Azure App Service from Azure Pipelines automatic deployment
+3. Go into Azure Cloud Shell and create SSH key
+4. Add SSH public key to GitHub
 
-* Successful prediction from deployed flask app in Azure Cloud Shell.  [Use this file as a template for the deployed prediction](https://github.com/udacity/nd082-Azure-Cloud-DevOps-Starter-Code/blob/master/C2-AgileDevelopmentwithAzure/project/starter_files/flask-sklearn/make_predict_azure_app.sh).
-The output should look similar to this:
-
+## Azure Cloud Shell Testing
+6. Go to the Azure portal and enter the Cloud Shell
+5. Copy the repo and test to make sure everything works:
 ```bash
-udacity@Azure:~$ ./make_predict_azure_app.sh
+git clone git@github.com:mkeresty/ud-cloud-devops-p2.git
+cd ud-cloud-devops-p2
+python3 -m venv ~/.myvenv
+source ~/.myvenv/bin/activate
+make all
+chmod +x make_predict_azure_app.sh
+./make_predict_azure_app.sh 
+```
+![Cloud Shell Testing](./screenshots/ss_5_shell_test_run.png)
+If it works you will see something like:
+```bash
 Port: 443
 {"prediction":[20.35373177134412]}
 ```
 
-* Output of streamed log files from deployed application
+## Create Web App
+6. Create Web App:
+```bash
+az webapp up --name udp2 --resource-group Azuredevops --sku B1 --logs --runtime "PYTHON:3.10"
+```
 
-> 
+## Azure DevOps Setup
+7. Go to dev.azure.com and create a new project called `udacity_project2`
+8. Click **Create Pipeline** and then **Existing Azure Pipelines YAML file**
+9. Go to **Project Settings** then **Service Connections** and **Azure Resource Manager**
+10. Click **Service principal (automatic)** and fill in the required fields
+11. In **User Settings** create a Personal Access Token and give it full access
+12. Create new agent pool in **Project Settings > Agent pools** with type **self-hosted** and check **grant access permissions to all pipelines**
+
+## Setup Agent VM
+13. Create VM to be an agent in the pool and install required packages:
+```bash
+az vm create --resource-group Azuredevops --name myLinuxVM --image Ubuntu2204 --generate-ssh-keys --admin-username azureuser --public-ip-sku Standard
+sudo groupadd docker
+sudo usermod -aG docker $USER
+# go to dev portal then click new agent in the pool settings
+curl -O https://vstsagentpackage.azureedge.net/agent/4.254.0/vsts-agent-linux-x64-4.254.0.tar.gz
+mkdir myagent && cd myagent
+tar -xzvf ../vsts-agent-linux-x64-4.254.0.tar.gz
+./config.sh
+# enter dev portal url
+# enter access token
+# enter myPool name
+# use default vm myLinuxVM
+# use default work folder
+
+sudo ./svc.sh install
+sudo ./svc.sh start
+```
+You will now see your agent online in the Dev Portal
+![Agent Online](./screenshots/ss_9_agent_online.png)
+
+
+## Web App Configuration
+14. Your web app should now build! Go to the Pipeline page in the Dev portal to see your build status
+![Build Status](./screenshots/ss_10_deployed_app_pipeline.png)
+
+14. Go back to the Azure portal and to your web app. Then in the configuration fill in start command:
+```bash
+python3 -m pip install -r requirements.txt && python app.py
+```
+
+## Using your app
+15. Now visit https://udp2.azurewebsites.net/ and you will see **My Udacity Prediction Home**
+![Web App Home](./screenshots/ss_12_website_update_proof.png)
+16. From test the production Web App
+```bash
+./make_predict_azure_app.sh
+Port: 443
+{
+  "prediction": [
+    2.431574790057212
+  ]
+}
+```
+![Web App Prediction](./screenshots/ss_13_prediction_post_update.png)
+17. You will also be able to view live logs from the Azure Portal
+![Web App Prediction](./screenshots/ss_14_live_logs.png)
+
+
+**Note:** Any updates you make will be automaticall deployed!
+
+
 
 ## Enhancements
-
-<TODO: A short description of how to improve the project in the future>
+- Github CI and Azure Pipelines perform similar actions. Utilize Github more by running tests and building Docker images in Github Actions, then the Azure Pipeline will only be responsible for deploying the containers. This also gives you the added benefit of storing older images if you need to rollback the deployment for any reason.
+- Could utilize Kubernetes for deploying high-use web applications where horizontal scaling is required.
 
 ## Demo 
 
 <TODO: Add link Screencast on YouTube>
-
-

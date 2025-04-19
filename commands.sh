@@ -42,9 +42,6 @@ sudo apt-get -y install zip
 pip install pylint==3.2.6
 export PATH=$HOME/.local/bin:$PATH
 
+# in web app set startup command to
+python3 -m pip install -r requirements.txt && python app.py
 
-
-
-# tokens
-# 78BMR4QDfnl46VxXoXDy0tmon5OyJAwpDBgH0vWps7kJl4muPNPbJQQJ99BDACAAAAAPDBwgAAASAZDO44Hm
-# DevOpsAgent@123
