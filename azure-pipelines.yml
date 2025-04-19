@@ -11,7 +11,7 @@ variables:
   repositoryName: 'ud-cloud-devops-p2'
   resourceGroup: 'Azuredevops'
   subscriptionId: '7de72e36-dc87-4e3f-aa67-6dacbc9993c6'
-  webAppName: 'mk'
+  webAppName: 'udp2'
   vmName: 'myLinuxVM'
   vmUsername: 'azureuser'
 
