@@ -1,6 +1,6 @@
 setup:
 	python3 -m venv ~/.antenv
-	source ~/.antenv/bin/activate
+	/bin/bash source ~/.antenv/bin/activate
 
 install:
 	pip install --upgrade pip &&\
