@@ -1,8 +1,7 @@
 trigger:
 - main
 
-pool:
-  vmImage: 'ubuntu-latest'
+pool: 'myPool'
 
 variables:
   subscriptionId: '7de72e36-dc87-4e3f-aa67-6dacbc9993c6'
@@ -14,20 +13,23 @@ variables:
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
+steps:
+- script: echo Hello world
+  displayName: 'Test'
 
-stages:
-- stage: Build
-  jobs:
-  - job: BuildAndPush
-    displayName: 'Build and Push Docker Image'
-    steps:
-    - task: Docker@2
-      displayName: 'Build and Push Docker Image'
-      inputs:
-        command: buildAndPush
-        containerRegistry: $(containerRegistry)
-        repository: $(repositoryName)
-        dockerfile: $(dockerfilePath)
-        tags: |
-          $(tag)
-          latest
+# stages:
+# - stage: Build
+#   jobs:
+#   - job: BuildAndPush
+#     displayName: 'Build and Push Docker Image'
+#     steps:
+#     - task: Docker@2
+#       displayName: 'Build and Push Docker Image'
+#       inputs:
+#         command: buildAndPush
+#         containerRegistry: $(containerRegistry)
+#         repository: $(repositoryName)
+#         dockerfile: $(dockerfilePath)
+#         tags: |
+#           $(tag)
+#           latest
