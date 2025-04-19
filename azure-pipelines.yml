@@ -5,7 +5,7 @@ pool: myPool
 
 variables:
   appName: 'udp2'
-  azureServiceConnectionId: '748a4dff-8ed9-44ae-9ef5-cec988957112'
+  azureServiceConnectionId: 'myServiceConnection'
   environmentName: 'flask-ml-service'
   projectRoot: $(System.DefaultWorkingDirectory)
   repositoryName: 'ud-cloud-devops-p2'
