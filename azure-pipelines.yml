@@ -25,10 +25,7 @@ stages:
     steps:    
     - script: |
         export PATH=$HOME/.local/bin:$PATH
-        python3 -m venv ~/.udacity-devops
-        source ~/.udacity-devops/bin/activate
-        pip install --upgrade pip
-        pip install -r requirements.txt
+        make install
       workingDirectory: $(projectRoot)
       displayName: 'Install deps'
     - task: ArchiveFiles@2
