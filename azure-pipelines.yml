@@ -24,7 +24,8 @@ stages:
     pool: myPool
     steps:    
     - script: |
-        export PATH=$HOME/.local/bin:$PATH
+        cd "$(Build.SourcesDirectory)/ud-cloud-devops-p2"
+        make setup
         make install
         make lint
       workingDirectory: $(projectRoot)

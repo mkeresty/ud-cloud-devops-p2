@@ -1,7 +1,7 @@
 setup:
-	python3 -m venv ~/.udacity-devops
-	source ~/.udacity-devops/bin/activate
-	
+	python -m venv ~/.antenv
+	source ~/.antenv/bin/activate
+
 install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
