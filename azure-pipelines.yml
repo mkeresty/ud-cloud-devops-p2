@@ -5,7 +5,7 @@ pool: myPool
 
 variables:
   appName: 'udp2'
-  azureServiceConnectionId: 'myServiceConnection'
+  azureServiceConnectionId: '748a4dff-8ed9-44ae-9ef5-cec988957112'
   environmentName: 'flask-ml-service'
   projectRoot: $(System.DefaultWorkingDirectory)
   repositoryName: 'ud-cloud-devops-p2'
@@ -25,6 +25,7 @@ stages:
     steps:    
     - script: |
         export PATH=$HOME/.local/bin:$PATH
+        make setup
         make install
         make lint
       workingDirectory: $(projectRoot)
