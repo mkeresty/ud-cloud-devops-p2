@@ -3,7 +3,7 @@
 <TODO: complete this with an overview of your project>
 
 ## Project Plan
-<TODO: Project Plan
+<TODO: Project Plan>
 
 * A link to a Trello board for the project
 * A link to a spreadsheet that includes the original and final project plan>

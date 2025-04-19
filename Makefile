@@ -1,9 +1,10 @@
 setup:
-	python3 -m venv .antenv
-	. ./.antenv/bin/activate 
+	python3 -m venv ~/.flask-ml-azure
+	source ~/.flask-ml-azure/bin/activate
 
 install:
-	python3 -m pip install --upgrade pip && python3 -m pip install -r requirements.txt
+	pip install --upgrade pip &&\
+		pip install -r requirements.txt
 
 test:
 	#python -m pytest -vv --cov=myrepolib tests/*.py
