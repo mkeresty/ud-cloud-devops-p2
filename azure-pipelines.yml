@@ -25,11 +25,12 @@ stages:
     steps:    
     - script: |
         export PATH=$HOME/.local/bin:$PATH
-        make setup
-        make install
-        make lint
+        python3 -m venv ~/.udacity-devops
+        source ~/.udacity-devops/bin/activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
       workingDirectory: $(projectRoot)
-      displayName: 'Run lint tests'
+      displayName: 'Install deps'
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
