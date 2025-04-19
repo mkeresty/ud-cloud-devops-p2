@@ -1,5 +1,5 @@
 setup:
-	python -m venv ~/.antenv
+	python3 -m venv ~/.antenv
 	source ~/.antenv/bin/activate
 
 install:
