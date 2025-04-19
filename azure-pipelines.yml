@@ -8,9 +8,10 @@ variables:
   azureServiceConnectionId: 'myServiceConnection'
   environmentName: 'flask-ml-service'
   projectRoot: $(System.DefaultWorkingDirectory)
-  repositoryName: 'flask-app'
+  repositoryName: 'ud-cloud-devops-p2'
   resourceGroup: 'Azuredevops'
   subscriptionId: '7de72e36-dc87-4e3f-aa67-6dacbc9993c6'
+  webAppName: 'udacity_project2'
   vmName: 'myLinuxVM'
   vmUsername: 'azureuser'
 
