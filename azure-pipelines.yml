@@ -25,7 +25,6 @@ stages:
     steps:    
     - script: |
         export PATH=$HOME/.local/bin:$PATH
-        make setup
         make install
         make lint
       workingDirectory: $(projectRoot)
