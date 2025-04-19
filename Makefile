@@ -1,5 +1,5 @@
 setup:
-	la -la
+	ls -la
 	pwd
 	python3 -m venv ~/.antenv
 	~./antenv/bin/activate
