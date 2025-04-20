@@ -1,14 +1,10 @@
 # Overview
 
-<TODO: complete this with an overview of your project>
+This repo contains a flask application that utilizes ML to create house pricing predictions. The supplementary content and instructions outline how to set up Github Actions and Azure Pipelines to create automated setup, testing and deployments to Azure.
 
 ## Project Plan
-<TODO: Project Plan>
-
-* A link to a Trello board for the project
-* A link to a spreadsheet that includes the original and final project plan>
-
-## Instructions
+- [Trello Board](https://trello.com/invite/b/68042cccef3166045705d5e6/ATTIf3f09f0b617032288777c2664ce146ea5C172673/my-trello-board)
+- [Planning Spreadsheet](./udacity_project_2_spreadsheet.xlsx)
 
 # Architectural Diagram
 ![Diagram](./screenshots/microservices-strategy.png)
@@ -27,7 +23,6 @@
 1. Upload code to GitHub
 2. Go to Github Actions and ensure all tests are passing
 ![GitHub Actions](./screenshots/ss_2_passing_gh_actions.png)
-
 
 3. Go into Azure Cloud Shell and create SSH key
 4. Add SSH public key to GitHub
@@ -126,4 +121,4 @@ Port: 443
 
 ## Demo 
 
-<TODO: Add link Screencast on YouTube>
+- [Watch Demo here](https://youtu.be/RqS0iJqFhWM)
