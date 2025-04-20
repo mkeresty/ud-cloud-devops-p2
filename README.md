@@ -1,3 +1,5 @@
+[![Python application test with Github Actions](https://github.com/mkeresty/ud-cloud-devops-p2/actions/workflows/python-app.yml/badge.svg)](https://github.com/mkeresty/ud-cloud-devops-p2/actions/workflows/python-app.yml)
+
 # Overview
 
 This repo contains a flask application that utilizes ML to create house pricing predictions. The supplementary content and instructions outline how to set up Github Actions and Azure Pipelines to create automated setup, testing and deployments to Azure.
