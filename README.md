@@ -27,6 +27,7 @@ This repo contains a flask application that utilizes ML to create house pricing 
 ![GitHub Actions](./screenshots/ss_2_passing_gh_actions.png)
 
 3. Go into Azure Cloud Shell and create SSH key
+```ssh-keygen -t rsa```
 4. Add SSH public key to GitHub
 
 ## Azure Cloud Shell Testing
@@ -51,11 +52,11 @@ Port: 443
 ## Create Web App
 6. Create Web App:
 ```bash
-az webapp up --name udp2 --resource-group Azuredevops --sku B1 --logs --runtime "PYTHON:3.10"
+az webapp up --name udp3 --resource-group Azuredevops --sku B1 --logs --runtime "PYTHON:3.10"
 ```
 
 ## Azure DevOps Setup
-7. Go to dev.azure.com and create a new project called `udacity_project2`
+7. Go to [dev.azure.com](https://go.microsoft.com/fwlink/?LinkId=307137) and create a new project called `udacity_project2`
 8. Click **Create Pipeline** and then **Existing Azure Pipelines YAML file**
 9. Go to **Project Settings** then **Service Connections** and **Azure Resource Manager**
 10. Click **Service principal (automatic)** and fill in the required fields
@@ -66,6 +67,7 @@ az webapp up --name udp2 --resource-group Azuredevops --sku B1 --logs --runtime 
 13. Create VM to be an agent in the pool and install required packages:
 ```bash
 az vm create --resource-group Azuredevops --name myLinuxVM --image Ubuntu2204 --generate-ssh-keys --admin-username azureuser --public-ip-sku Standard
+ssh azureuser@<publicIp>
 sudo groupadd docker
 sudo usermod -aG docker $USER
 # go to dev portal then click new agent in the pool settings
@@ -81,6 +83,18 @@ tar -xzvf ../vsts-agent-linux-x64-4.254.0.tar.gz
 
 sudo ./svc.sh install
 sudo ./svc.sh start
+
+sudo apt-get update
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+
+sudo apt-get install python3.10-venv
+sudo apt-get install python3-pip
+sudo apt-get install python3.10-distutils
+sudo apt-get -y install zip
+pip install pylint==3.2.6
+export PATH=$HOME/.local/bin:$PATH
 ```
 You will now see your agent online in the Dev Portal
 ![Agent Online](./screenshots/ss_9_agent_online.png)
@@ -92,11 +106,11 @@ You will now see your agent online in the Dev Portal
 
 14. Go back to the Azure portal and to your web app. Then in the configuration fill in start command:
 ```bash
-python3 -m pip install -r requirements.txt && python app.py
+python3 -m pip install -r requirements.txt && python3 app.py
 ```
 
 ## Using your app
-15. Now visit https://udp2.azurewebsites.net/ and you will see **My Udacity Prediction Home**
+15. Now visit https://udp3-dkbeaqdhhccjd0cz.eastus-01.azurewebsites.net/ and you will see **My Udacity Prediction Home**
 ![Web App Home](./screenshots/ss_12_website_update_proof.png)
 16. From test the production Web App
 ```bash

@@ -4,14 +4,14 @@ trigger:
 pool: myPool
 
 variables:
-  appName: 'udp2'
+  appName: 'udp3'
   azureServiceConnectionId: 'myServiceConnection'
   environmentName: 'flask-ml-service'
   projectRoot: $(System.DefaultWorkingDirectory)
   repositoryName: 'ud-cloud-devops-p2'
   resourceGroup: 'Azuredevops'
-  subscriptionId: '7de72e36-dc87-4e3f-aa67-6dacbc9993c6'
-  webAppName: 'udp2'
+  subscriptionId: 'a3a536c2-3690-4c5f-8032-998a8dc3234e'
+  webAppName: 'udp3'
   vmName: 'myLinuxVM'
   vmUsername: 'azureuser'
 
