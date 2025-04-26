@@ -127,7 +127,7 @@ Port: 443
 ![Web App Prediction](./screenshots/ss_14_live_logs.png)
 
 
-**Note:** Any updates you make will be automaticall deployed!
+**Note:** Any updates you make will be automatically deployed!
 
 
 
